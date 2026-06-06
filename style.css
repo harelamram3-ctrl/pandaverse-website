@@ -1,5 +1,6 @@
 ﻿* {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -7,120 +8,231 @@ body {
   font-family: Arial, sans-serif;
   background: #050505;
   color: white;
+  overflow-x: hidden;
+}
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at center, #222, #000);
 }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 8%;
-  background: #111;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid #333;
 }
 
-header h2 {
-  margin: 0;
+.logo {
+  font-size: 26px;
+  font-weight: bold;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 12px;
+  margin: 0 10px;
   font-weight: bold;
 }
 
+nav a:hover {
+  color: #ccc;
+}
+
 .hero {
+  min-height: 90vh;
   text-align: center;
-  padding: 120px 20px;
-  background: linear-gradient(135deg, #000, #222, #000);
+  padding: 130px 20px 80px;
 }
 
 .hero h1 {
-  font-size: 70px;
+  font-size: 82px;
   margin: 0;
+  letter-spacing: 3px;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 30px #fff; }
 }
 
 .hero p {
-  font-size: 24px;
+  font-size: 26px;
+  color: #ddd;
+}
+
+.buttons {
+  margin-top: 30px;
 }
 
 button {
   background: white;
   color: black;
   border: none;
-  padding: 15px 32px;
-  border-radius: 14px;
-  font-size: 18px;
+  padding: 15px 30px;
+  margin: 8px;
+  border-radius: 16px;
+  font-size: 17px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
+  transform: scale(1.08);
   background: #ddd;
 }
 
-#ip {
+.ip {
   margin-top: 20px;
+  font-size: 20px;
   color: #bbb;
 }
 
-.box {
-  margin: 50px auto;
-  width: 85%;
-  background: #111;
-  padding: 35px;
-  border-radius: 22px;
+.stats {
+  margin: 45px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+}
+
+.stats div {
+  background: rgba(255,255,255,0.08);
   border: 1px solid #333;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.stats b {
+  display: block;
+  font-size: 30px;
+}
+
+.stats span {
+  color: #aaa;
+}
+
+.section {
+  width: 88%;
+  margin: 80px auto;
   text-align: center;
 }
 
-.cards {
-  width: 85%;
-  margin: 50px auto;
+.section h2 {
+  font-size: 42px;
+}
+
+.grid,
+.rank-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
 
-.card {
-  background: #111;
-  padding: 30px;
-  border-radius: 22px;
+.card,
+.rank,
+.leaderboard,
+.rules {
+  background: rgba(255,255,255,0.08);
   border: 1px solid #333;
-  text-align: center;
+  border-radius: 24px;
+  padding: 28px;
+  backdrop-filter: blur(10px);
 }
 
-.card:hover {
-  transform: translateY(-6px);
+.card:hover,
+.rank:hover {
+  transform: translateY(-8px);
   transition: 0.3s;
   border-color: white;
 }
 
-.join {
-  text-align: center;
-  padding: 70px 20px;
-  background: #111;
+.rank h3 {
+  font-size: 26px;
+}
+
+.rank h4 {
+  font-size: 32px;
+  margin: 15px 0;
+}
+
+.rank ul {
+  text-align: right;
+  line-height: 1.9;
+}
+
+.popular {
+  border: 2px solid white;
+  box-shadow: 0 0 25px #ffffff55;
+}
+
+.leaderboard {
+  max-width: 700px;
+  margin: auto;
+}
+
+.leaderboard div {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid #333;
+}
+
+.leaderboard span {
+  background: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.rules {
+  max-width: 750px;
+  margin: auto;
+  font-size: 21px;
 }
 
 footer {
   text-align: center;
-  padding: 25px;
+  padding: 35px;
   background: #000;
+  border-top: 1px solid #333;
   color: #aaa;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   header {
     flex-direction: column;
     gap: 15px;
   }
 
-  .hero h1 {
-    font-size: 45px;
-  }
-
   nav a {
     display: inline-block;
-    margin: 6px;
+    margin: 5px;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+  }
+
+  .hero p {
+    font-size: 20px;
+  }
+
+  .section h2 {
+    font-size: 32px;
   }
 }

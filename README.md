@@ -1,2 +1,3 @@
-# pandaverse-website
-Official website of PandaVerse - Israeli Minecraft Survival &amp; MiniGames Server
+﻿# PandaVerse Website
+
+Official website for PandaVerse Minecraft server.
